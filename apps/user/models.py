@@ -6,8 +6,8 @@ from django.db import models
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=255, unique=True)
     email = models.EmailField(db_index=True, unique=True)
-    name = models.CharField(max_length=255)
-    surname = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, null=True, blank=True)
+    surname = models.CharField(max_length=255, null=True, blank=True)
     avatar_url = models.ImageField(upload_to='avatars/', blank=True, null=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
