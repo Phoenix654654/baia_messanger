@@ -6,6 +6,7 @@ from apps.user.models import User
 class Chat(models.Model):
     is_group = models.BooleanField(default=False)
     name = models.CharField(max_length=255, null=True)
+    avatar = models.ImageField(upload_to='groups/', null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     deleted_at = models.DateTimeField(null=True)
