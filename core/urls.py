@@ -1,11 +1,15 @@
+from django.conf import settings
 from django.contrib import admin
 from django.shortcuts import redirect
 from django.urls import path, include
+from django.views.static import serve
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 from django.contrib.auth import views as auth_views, logout
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+
+from api.v1.views.additional import MediaViewSet
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -35,4 +39,9 @@ urlpatterns = [
 
     path('api/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
+    path('static/<path:path>', serve, {'document_root': settings.STATIC_ROOT, 'show_indexes': settings.DEBUG}),
+    path('api/media/<path:path>', MediaViewSet.as_view()),
+
+    path("__debug__/", include("debug_toolbar.urls")),
 ]

@@ -44,15 +44,18 @@ class Messages(models.Model):
         ordering = ('id',)
 
 
-class MessagesStatus(models.Model):
-    message = models.ForeignKey(Messages, on_delete=models.CASCADE, related_name='status_messages')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='status_messages_user')
-    is_read = models.BooleanField(default=False)
-    is_deleted = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    deleted_at = models.DateTimeField(null=True)
 
-    class Meta:
-        db_table = 'messages_status'
-        ordering = ('id',)
+
+
+# class MessagesStatus(models.Model):
+#     message = models.ForeignKey(Messages, on_delete=models.CASCADE, related_name='status_messages')
+#     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='status_messages_user')
+#     is_read = models.BooleanField(default=False)
+#     is_deleted = models.BooleanField(default=False)
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     updated_at = models.DateTimeField(auto_now=True)
+#     deleted_at = models.DateTimeField(null=True)
+#
+#     class Meta:
+#         db_table = 'messages_status'
+#         ordering = ('id',)
